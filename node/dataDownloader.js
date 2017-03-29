@@ -28,7 +28,8 @@ const dataDownloader = {
         return shopList;
     },
     download(startIndex,channel,lat,lng,geoType){
-        let fromUrl = baseUrl+"?startIndex="+(++startIndex)+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&geoType="+geoType+"&initialLat="+lat+"&initialLng="+lng;
+        startIndex = (++startIndex)*25;
+        let fromUrl = baseUrl+"?startIndex="+startIndex+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&geoType="+geoType+"&initialLat="+lat+"&initialLng="+lng;
         console.log(fromUrl);
         https.get(fromUrl,(res)=>{
             let dpData = '';
@@ -44,7 +45,9 @@ const dataDownloader = {
     },
     multiDownload(startIndex,channel,lat,lng,geoType){
         for(let i=0;i<20;i++){
-            this.download(i,"6","39.99281","116.31088","2");
+            setTimeout(()=>{
+                this.download(i,"6","39.99281","116.31088","2");
+            },500*i);
         }
     }
 }

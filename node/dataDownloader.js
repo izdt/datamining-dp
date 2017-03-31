@@ -3,20 +3,25 @@ const fs = require('fs');
 
 
 const baseUrl = "https://takeaway.dianping.com/waimai/ajax/newm/newIndex";
-const jsonFile = "data/shopList.json";
+const jsonFile = "data/shopList";
 const offset = 20;
 
 const dataDownloader = {
-    savedDataPage:0,
+    fileNum:0,
+    toSavedItems:0,
     currentData:[],
     saveShopListJson(data){
         this.currentData=[...this.currentData,...data];          
-        this.savedDataPage++;
-        if(this.savedDataPage>=offset){
-            console.log("save files");
-            fs.appendFile(jsonFile,JSON.stringify(this.currentData),(err)=>{
+        this.toSavedItems++;
+        if(this.toSavedItems>=offset){
+            let saveData = JSON.stringify(this.currentData);
+            console.log("save files: "+this.fileNum);
+            fs.writeFile(jsonFile+this.fileNum+".json",saveData,(err)=>{
                 console.log(err);
-            })
+            });
+            this.fileNum++;
+            this.currentData = [];
+            this.toSavedItems = 0;
         }
     },
     getShopList(data){
@@ -28,7 +33,7 @@ const dataDownloader = {
         return shopList;
     },
     download(startIndex,channel,lat,lng,geoType){
-        startIndex = (++startIndex)*25;
+        startIndex = startIndex*25;
         let fromUrl = baseUrl+"?startIndex="+startIndex+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&geoType="+geoType+"&initialLat="+lat+"&initialLng="+lng;
         console.log(fromUrl);
         https.get(fromUrl,(res)=>{
@@ -44,7 +49,7 @@ const dataDownloader = {
         });
     },
     multiDownload(startIndex,channel,lat,lng,geoType){
-        for(let i=0;i<20;i++){
+        for(let i=0;i<500;i++){
             setTimeout(()=>{
                 this.download(i,"6","39.99281","116.31088","2");
             },500*i);

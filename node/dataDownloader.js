@@ -14,12 +14,12 @@ const dataDownloader = {
         this.currentData=[...this.currentData,...data];          
         this.toSavedItems++;
         if(this.toSavedItems>=offset){
+            this.fileNum++;
             let saveData = JSON.stringify(this.currentData);
             console.log("save files: "+this.fileNum);
             fs.writeFile(jsonFile+this.fileNum+".json",saveData,(err)=>{
                 console.log(err);
             });
-            this.fileNum++;
             this.currentData = [];
             this.toSavedItems = 0;
         }

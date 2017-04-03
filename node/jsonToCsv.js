@@ -15,7 +15,7 @@ const convertor = {
             +shop.brand+","
             +shop.overtimePaymentSupported+","
             +shop.isNewShopPromotion+","
-            +shop.extraService+","
+            +(shop.extraService.indexOf(5)>=0)+","
             +shop.mtWmPoiId+"\r\n";
         }
         fs.appendFile(shopCsvFile,shopCsv,(err)=>{

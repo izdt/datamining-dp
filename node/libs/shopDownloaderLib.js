@@ -1,12 +1,11 @@
 const https = require('https');
 const fs = require('fs');
 
-
 const baseUrl = "https://takeaway.dianping.com/waimai/ajax/newm/newIndex";
-const jsonFile = "data/shopList";
+const jsonFile = "data/shop/shopList";
 const offset = 20;
 
-const dataDownloader = {
+const shopDownloaderLib = {
     fileNum:0,
     toSavedItems:0,
     currentData:[],
@@ -47,16 +46,7 @@ const dataDownloader = {
                 this.saveShopListJson(shopList);
             });
         });
-    },
-    multiDownload(startIndex,channel,lat,lng,geoType){
-        for(let i=0;i<500;i++){
-            setTimeout(()=>{
-                this.download(i,"6","39.99281","116.31088","2");
-            },500*i);
-        }
     }
 }
 
-dataDownloader.multiDownload("1","6","39.99281","116.31088","2");
-
-module.exports = dataDownloader;
+module.exports = shopDownloaderLib;

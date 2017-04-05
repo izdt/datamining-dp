@@ -6,29 +6,28 @@ const convertor = {
     appendToMenuListCsv(data){
         let menuCsv = "";
         let categoryCounnt = data.data.categoryList.length;
-        for(let category of dat.data.categoryList){
+        for(let category of data.data.categoryList){
             for(spu of category.spuList){
                 menuCsv += spu.spuName+","
                 +category.categoryName+","
-                +spu.categoryType+","
                 +spu.originPrice+","
                 +spu.praiseNum+","
                 +spu.saleVolume+","
                 +spu.sellStatus+","
-                +spu.skuList[0].spuId+","
-                +spu.skuList[0].boxFee+","
-                +spu.skuList[0].currentPrice+","
-                +spu.skuList[0].minPurchaseNum+","
-                +spu.skuList[0].realStock+","
+                +(spu.skuList[0]?spu.skuList[0].boxFee:0)+","
+                +(spu.skuList[0]?spu.skuList[0].currentPrice:0)+","
+                +(spu.skuList[0]?spu.skuList[0].minPurchaseNum:0)+","
+                +(spu.skuList[0]?spu.skuList[0].realStock:0)+","
                 +spu.spuPromotionInfo+","
                 +spu.skuList.length+","
                 +category.spuList.length+","
                 +categoryCounnt+","
-                +data.mtWmPoiId+"\r\n";
+                +spu.spuId+","
+                +data.data.mtWmPoiId+"\r\n";
              
             }
         }
-        console.log(menuCsvFile);
+        console.log(menuCsv);
         fs.appendFile(menuCsvFile,menuCsv,(err)=>{
             if(err) throw err;
         }); 
@@ -39,13 +38,17 @@ const convertor = {
                if(menuJsonFile.test(file)){
                    //let shopId = file.substr(0,c.indexOf('.json'));
                    //console.log(file);
-                   fs.readFile(dataFolder+file,(err,data)=>{
-                       console.log("HI");
-                       let menuData = JSON.parse(data);
-                       console.log(menuData);
-                       if(menuData.code==0)
-                       callback(menuData);
-                   })
+                //    fs.readFile(dataFolder+file,(err,data)=>{
+                //        console.log("HI");
+                //        let menuData = JSON.parse(data);
+                //        console.log(menuData);
+                //        if(menuData.code==0)
+                //        callback(menuData);
+                //    });
+                   let data = fs.readFileSync(dataFolder+file);
+                   let menuData = JSON.parse(data);
+                   if(menuData.code==0)
+                   callback(menuData);
                }
            }
         });

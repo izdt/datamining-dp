@@ -6,9 +6,13 @@ const convertor = {
     appendToMenuListCsv(data){
         let menuCsv = "";
         let categoryCounnt = data.data.categoryList.length;
+        //let shopMenuCount = 0;
         for(let category of data.data.categoryList){
             for(spu of category.spuList){
-                menuCsv += spu.spuName+","
+                //shopMenuCount++;
+                menuCsv +=
+                data.data.shopInfo.shopName+","
+                +spu.spuName+","
                 +category.categoryName+","
                 +spu.originPrice+","
                 +spu.praiseNum+","
@@ -24,7 +28,6 @@ const convertor = {
                 +categoryCounnt+","
                 +spu.spuId+","
                 +data.data.mtWmPoiId+"\r\n";
-             
             }
         }
         console.log(menuCsv);

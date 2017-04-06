@@ -31,9 +31,9 @@ const shopDownloaderLib = {
         console.log("get shoplist: "+shopList.length);
         return shopList;
     },
-    download(startIndex,channel,lat,lng,geoType){
+    download(startIndex,channel,lat,lng,sortId){
         startIndex = startIndex*25;
-        let fromUrl = baseUrl+"?startIndex="+startIndex+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&geoType="+geoType+"&initialLat="+lat+"&initialLng="+lng;
+        let fromUrl = baseUrl+"?startIndex="+startIndex+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&initialLat="+lat+"&initialLng="+lng+"&sortId="+sortId;
         console.log(fromUrl);
         https.get(fromUrl,(res)=>{
             let dpData = '';

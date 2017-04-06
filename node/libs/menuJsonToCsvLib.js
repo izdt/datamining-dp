@@ -31,7 +31,7 @@ const convertor = {
             }
         }
         console.log(menuCsv);
-        fs.appendFile(menuCsvFile,menuCsv,(err)=>{
+        fs.appendFile(menuCsvFile,menuCsv,'UTF-8',(err)=>{
             if(err) throw err;
         }); 
     },

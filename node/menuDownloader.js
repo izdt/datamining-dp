@@ -1,5 +1,5 @@
 const lib = require('./libs/menuDownloaderLib');
-const shopLib = require('./libs/jsonToCsvLib');
+const shopLib = require('./libs/shopToCsvLib');
 const fs = require('fs');
 
 const menuFolder = "data/menu/";

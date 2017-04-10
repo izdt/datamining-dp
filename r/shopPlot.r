@@ -1,6 +1,6 @@
 getwd()
-setwd('C:/Users/zdt-pc/Dev/Github/iZDT/datamining-dp')
-table <- read.csv('data/shopList.csv', sep =',',header = T)
+setwd('d:/Projects/Github/iZDT/datamining-dp')
+table <- read.csv('data/shopList.csv', sep =',',header = T, encoding = 'UTF-8')
 head(table)
 plot(table$deliverTime~table$sold)
 plot(table$sold~table$extraService)

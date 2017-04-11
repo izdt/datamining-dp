@@ -1,0 +1,7 @@
+table <- read.csv('data/shopList.csv', header = TRUE, encoding = 'UTF-8', sep =',' )
+topShop <- read.csv('data/topshopList.csv', header = TRUE, encoding = 'UTF-8', sep =',' )
+library(ggplot2)
+#head(table)
+ggplot(data=table,aes(x=star,y=sold,color=factor(brand))) + geom_point()
+ggplot(topShop=table,aes(x=star,y=sold,color=factor(brand))) + geom_point()+geom_smooth()
+max(table$star)

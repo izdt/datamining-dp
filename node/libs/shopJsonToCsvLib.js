@@ -1,15 +1,16 @@
 const fs = require('fs');
-const dataFolder = 'data/shopBj/';
-const shopCsvFile = 'data/topshopList.csv';
+const dataFolder = 'data/topShop/';
+const shopCsvFile = 'data/topshopListWithLL.csv';
 const shopJsonFile = /^shopListBj\d*\.json$/;
 let shopIds = [];
 const convertor = {
     appendToShopListCsv(data){
         let shopCsv = "";
         for(let shop of data){
-            if(shopIds.indexOf(shop.mtWmPoiId)>-1) continue;
+            //if(shopIds.indexOf(shop.mtWmPoiId)>-1) continue;
             shopIds.push(shop.mtWmPoiId);
-            shopCsv+=shop.name+","
+            shopCsv+=shop.lng+","+shop.lat+"," //shop.name+","
+            +shop.mtWmPoiId+","
             +shop.sold+","
             +shop.star+","
             +shop.deliverTime+","
@@ -19,7 +20,7 @@ const convertor = {
             +shop.overtimePaymentSupported+","
             +shop.isNewShopPromotion+","
             +(shop.extraService.indexOf(5)>=0)+","
-            +shop.mtWmPoiId+"\r\n";
+            +shop.name+"\r\n";
         }
         fs.appendFile(shopCsvFile,shopCsv,'UTF-8',(err)=>{
             if(err) throw err;

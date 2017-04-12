@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 
 const baseUrl = "https://takeaway.dianping.com/waimai/ajax/newm/newIndex";
-const jsonFile = "data/shop/shopListBj";
+const jsonFile = "data/topShop/shopListBj";
 const offset = 20;
 
 const shopDownloaderLib = {
@@ -23,11 +23,15 @@ const shopDownloaderLib = {
             this.toSavedItems = 0;
         }
     },
-    getShopList(data){
+    getShopList(data,lat,lng){
         let json = JSON.parse(data);
         let shopList=[];
         if(json.data&&json.data.shopList)
         shopList = json.data.shopList;
+        shopList.forEach((s)=> {
+           s.lat = lat;
+           s.lng = lng;
+        });
         console.log("get shoplist: "+shopList.length);
         return shopList;
     },
@@ -43,7 +47,7 @@ const shopDownloaderLib = {
             });
             res.on('end', ()=> {
                 //console.log(dpData);
-                let shopList = this.getShopList(dpData);
+                let shopList = this.getShopList(dpData,lat,lng);
                 this.saveShopListJson(shopList);
             });
         });

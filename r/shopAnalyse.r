@@ -6,6 +6,8 @@ topShopWithLL <- read.table('data/topShopWithLL.txt', header = TRUE, encoding = 
 topShopSold <- topShopWithLL[c("lng","lat","sold","star","mtWmPoiId")]
 star4brandShop <- topShopWithLL[which(topShopWithLL$star>40 & topShopWithLL$brand=="TRUE"),]
 
+pkusoldStarshop <- subset(table, star>=30, select = c(sold,star,brand))
+
 total <- tapply(topShop$sold, topShop$extraService, sum)
 pie(total)
 totalWithLL <- tapply(topShopWithLL$sold, list(topShopWithLL$lat,topShopWithLL$lng), sum)
@@ -29,8 +31,13 @@ totalSoldLL <- sqldf("select lng, lat, sum(sold) as totalSold, count(*) as shopN
 
 
 library(ggplot2)
+library(RColorBrewer)
+#display.brewer.all()
 #head(table)
 ggplot(data=table,aes(x=star,y=sold,color=factor(brand))) + geom_point()
 ggplot(data=topShop,aes(x=star,y=sold,color=factor(brand))) + geom_point()+geom_smooth()
 ggplot(data=totoalWithLL,aes(x=star,y=sold,color=factor(brand))) + geom_point()
-
+ggplot(data=pkusoldStarshop,aes(x=star,y=sold,color=factor(brand))) + geom_point()
+#ggplot(data=totalSoldLL,aes(x=lng,y=lat))+geom_point()
+pal<-colorRamp(c("yellow","red"))
+qplot(lng,lat,data=totalSoldLL,size=round(totalSold),color=round(totalSold/50),alpha=I(0.6))

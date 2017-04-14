@@ -38,6 +38,11 @@ ggplot(data=table,aes(x=star,y=sold,color=factor(brand))) + geom_point()
 ggplot(data=topShop,aes(x=star,y=sold,color=factor(brand))) + geom_point()+geom_smooth()
 ggplot(data=totoalWithLL,aes(x=star,y=sold,color=factor(brand))) + geom_point()
 ggplot(data=pkusoldStarshop,aes(x=star,y=sold,color=factor(brand))) + geom_point()
+
+sp <- ggplot(data=pkusoldStarshop,aes(x=star,y=sold,color=star)) + geom_point()
+sp +scale_color_gradientn(colours = rainbow(5))
+
 #ggplot(data=totalSoldLL,aes(x=lng,y=lat))+geom_point()
 pal<-colorRamp(c("yellow","red"))
 qplot(lng,lat,data=totalSoldLL,size=round(totalSold),color=round(totalSold/50),alpha=I(0.6))
+

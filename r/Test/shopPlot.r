@@ -22,3 +22,8 @@ tapply(table$sold, table$deliverTime, length)
 mode(deliverSold)
 sum(deliverSold)
 sum(table$sold)
+
+
+#atable <- read.csv("data/topshopListWithLL.csv",encoding = 'UTF-8', quote="", sep=",")
+#write.csv(atable,"test.csv",quote=F)
+#btable <- read.csv("test.csv")

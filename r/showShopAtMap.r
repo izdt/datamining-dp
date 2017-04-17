@@ -1,5 +1,5 @@
 #Set workspace to the path
-setwd('d:/Projects/Github/iZDT/datamining-dp')
+setwd('../')
 
 #use ggmap library
 library(ggmap)
@@ -9,14 +9,14 @@ library(sqldf)
 library(ggplot2)
 
 #load data
-topShop <- read.table('data/topShopWithLL.txt',  header = T, encoding = 'UTF-8')
+topShopWithLL <- read.table('data/topShopWithLL.txt',  header = T, encoding = 'UTF-8')
 #set to Beijing
 bj <- c(left = 116.2, bottom = 39.8, right = 116.53, top = 40.02)
 #set map format
 map <- get_stamenmap(bj, zoom = 12, maptype = "toner-lite")
 #use the map
 ggmap(map)
-totalSoldLL <- sqldf("select lng, lat, sum(sold) as totalSold, count(*) as shopNum from topShop group by lng,lat order by lat desc")
+totalSoldLL <- sqldf("select lng, lat, sum(sold) as totalSold, count(*) as shopNum from topShopWithLL group by lng,lat order by lat desc")
 top100SoldLL <- totalSoldLL[order(totalSoldLL$totalSold,decreasing=TRUE),][c(1:100),]
 topShopProcessData <- topShop[which(topShop$minFee<100 & topShop$minDeliverFee<50),]
 

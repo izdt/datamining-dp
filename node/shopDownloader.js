@@ -5,6 +5,7 @@ const lib = require('./libs/shopDownloaderLib');
 //     },500*i);
 // }
 
+/*
 //Get top 25 shop for 600 dot at Beijing
 for(let i=0; i< 20; i++){
     for(let j=0; j<30; j++){
@@ -14,4 +15,11 @@ for(let i=0; i< 20; i++){
             lib.download(0,6,lat,lng,1);
         },(30*i+j)*500);
     }
+}
+*/
+
+for(let i =0;i<4;i++){
+    setTimeout(()=>{
+       lib.download(i,6,"39.99281","116.31088",1);
+    },500*i);
 }

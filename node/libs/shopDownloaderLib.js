@@ -2,8 +2,8 @@ const https = require('https');
 const fs = require('fs');
 
 const baseUrl = "https://takeaway.dianping.com/waimai/ajax/newm/newIndex";
-const jsonFile = "data/topShop/shopListBj";
-const offset = 20;
+const jsonFile = "data/shopDate/shop";
+const offset = 4;
 
 const shopDownloaderLib = {
     fileNum:0,

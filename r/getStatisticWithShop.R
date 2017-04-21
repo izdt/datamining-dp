@@ -43,5 +43,22 @@ time <- arrangeGrob(t1+bt, t2+bt, nrow=2)
 ggsave(file="r/images/time.jpeg", time, width = 9, height = 6)
 
 #get top 200 shop from Beijing:
-topOrderedShop <- unique(topShopWithLL[,c(4:14)])
+uniquedShop <- unique(topShopWithLL[,c(4:6,10:14)])
+topOrderedShop <- uniquedShop[order(uniquedShop$sold,decreasing = T),]
+top200Shop <- subset(topOrderedShop,select = c(name,sold,star,brand,extraService,mtWmPoiId))[c(1:200),]
+
+jpeg(file="r/images/top200Brand.jpeg", width = 900, height = 600)
+isBrand<-tapply(top200Shop$name,top200Shop$brand,length)
+pie(isBrand,col=rainbow(7),labels=c("False","True"),main="Top 200 shop brand analyse")
+dev.off()
+
+jpeg(file="r/images/top200MtService.jpeg", width = 900, height = 600)
+isMtService<-tapply(top200Shop$name,top200Shop$extraService,length)
+pie(isMtService,col=rainbow(2),labels=c("False","True"),main="Top 200 shop Meituan Service analyse")
+dev.off()
+
+#split(top200Shop,top200Shop$brand)
+
+#pie <- ggplot(top200Shop, aes(x = "", y=extraService,fill = factor(brand),label=star)) + geom_bar(stat="identity",width = 1)
+#pie + coord_polar("y",direction=1)
 

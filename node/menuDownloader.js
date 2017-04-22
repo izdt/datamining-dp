@@ -1,5 +1,5 @@
 const lib = require('./libs/menuDownloaderLib');
-const shopLib = require('./libs/shopToCsvLib');
+const shopLib = require('./libs/shopJsonToCsvLib');
 const fs = require('fs');
 
 const menuFolder = "data/menu/";
@@ -11,7 +11,7 @@ const getShopMenu = ()=>{
         i++;
         setTimeout(()=>{
             lib.downloadShopMenu(shopId);
-        },(2000)*i);  
+        },(700)*i);  
     }
 };
 const downloadMenu = ()=>{
@@ -21,6 +21,6 @@ const downloadMenu = ()=>{
             shopIdList.push(shop.mtWmPoiId);
         });
     });
-    setTimeout(getShopMenu,1500);
+    setTimeout(getShopMenu,1000);
 };
 downloadMenu();

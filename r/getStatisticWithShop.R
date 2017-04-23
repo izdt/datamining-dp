@@ -43,6 +43,10 @@ time <- arrangeGrob(t1+bt, t2+bt, nrow=2)
 ggsave(file="r/images/time.jpeg", time, width = 9, height = 6)
 
 #get top 200 shop from Beijing:
+uniqueSold <- unique(topShopWithLL[,c("mtWmPoiId","sold")])
+top200Sold <- uniqueSold[order(uniqueSold$sold,decreasing = T),][c(1:200),]
+write.csv(file="data/top200ShopId.csv",top200Sold)
+
 uniquedShop <- unique(topShopWithLL[,c(4:6,10:14)])
 topOrderedShop <- uniquedShop[order(uniquedShop$sold,decreasing = T),]
 top200Shop <- subset(topOrderedShop,select = c(name,sold,star,brand,extraService,mtWmPoiId))[c(1:200),]

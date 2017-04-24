@@ -1,5 +1,7 @@
 const lib = require('./libs/menuDownloaderLib');
 const shopLib = require('./libs/shopJsonToCsvLib');
+const menuLib = require('./libs/menuJsonToCsvLib');
+const top200ShopId = require('./libs/getTop200ShopLib');
 const fs = require('fs');
 
 const menuFolder = "data/menu/";
@@ -23,4 +25,7 @@ const downloadMenu = ()=>{
     });
     setTimeout(getShopMenu,1000);
 };
-downloadMenu();
+shopIdList = top200ShopId;
+menuLib.clearFile(shopIdList);
+//getShopMenu();
+//downloadMenu();

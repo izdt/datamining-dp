@@ -35,6 +35,19 @@ const convertor = {
             if(err) throw err;
         }); 
     },
+    clearFile(keepFiles){
+        fs.readdir(dataFolder,(err,files)=>{
+            files.forEach((v,i,a)=>{
+                //console.log(v);
+                if(keepFiles.indexOf(v.substr(0,v.length-5))<0){
+                   //console.log(v);
+                   fs.unlink(dataFolder+v,(err)=>{
+                       if(err) throw err;
+                   });
+                }
+            })
+        });
+    },
     getMenuDataList(callback){
         fs.readdir(dataFolder,(err,files)=>{
            for(let file of files){

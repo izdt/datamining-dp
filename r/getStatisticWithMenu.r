@@ -14,4 +14,5 @@ menuData <- read.csv('data/menu.csv')
 
 #plot(menuData$originPrice,menuData$saleVolume)
 qplot(originPrice, data=menuData[which(menuData$saleVolume>0 & menuData$originPrice>3 & menuData$originPrice<100),], geom = "density")
-qplot(originPrice,saleVolume,data=menuData[which(menuData$saleVolume>500 & menuData$originPrice>0 & menuData$originPrice<100),],geom = c("point","smooth"))
+qplot(originPrice,saleVolume,data=menuData[which(menuData$saleVolume>500 & menuData$originPrice>0 & menuData$originPrice<100),],geom = c("point","smooth"),color=I("#FFCC00"))
+

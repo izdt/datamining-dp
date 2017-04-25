@@ -10,10 +10,10 @@ const convertor = {
         for(let category of data.data.categoryList){
             for(spu of category.spuList){
                 //shopMenuCount++;
-                menuCsv +=
-                data.data.shopInfo.shopName+","
-                +spu.spuName+","
-                +category.categoryName+","
+                menuCsv +="\""
+                +data.data.shopInfo.shopName+"\",\""
+                +spu.spuName+"\",\""
+                +category.categoryName+"\","
                 +spu.originPrice+","
                 +spu.praiseNum+","
                 +spu.saleVolume+","

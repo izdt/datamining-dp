@@ -28,7 +28,9 @@ k2 <- kmeans(na.omit(top200MenuPS),2)
 plot(top200Menu$originPrice,top200Menu$saleVolume,col=k2$cluster)
 #table(top200MenuPS$saleVolume,k2$cluster)
 qplot(saleVolume,data=top200Menu)
+ggsave(file="r/images/top200SaleVolume.jpeg",  width = 9, height = 6)
 qplot(originPrice,data=top200Menu)
+ggsave(file="r/images/top200Menu.jpeg",  width = 9, height = 6)
 
 #menuPS <- menuData[,c(5:7)]
 #kA <- kmeans(na.omit(menuPS),2)
@@ -39,5 +41,5 @@ qplot(originPrice,data=top200Menu)
 menuThan5<-menuData[which(menuData$originPrice>5 & menuData$originPrice<50 & !is.na(menuData$spuName)),]
 top200Menu5<-menuThan5[order(menuThan5$saleVolume,decreasing=TRUE),][c(1:200),]
 qplot(top200Menu5$originPrice,top200Menu5$saleVolume,data=top200Menu5,color=praiseNum)
-
+ggsave(file="r/images/top200Menu5.jpeg",  width = 9, height = 6)
 

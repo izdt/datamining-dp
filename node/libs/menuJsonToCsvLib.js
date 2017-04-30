@@ -22,7 +22,7 @@ const convertor = {
                 +(spu.skuList[0]?spu.skuList[0].currentPrice:0)+","
                 +(spu.skuList[0]?spu.skuList[0].minPurchaseNum:0)+","
                 +(spu.skuList[0]?spu.skuList[0].realStock:0)+","
-                +spu.spuPromotionInfo+","
+                +(spu.spuPromotionInfo?1:0)+","
                 +spu.skuList.length+","
                 +category.spuList.length+","
                 +categoryCounnt+","
@@ -30,8 +30,7 @@ const convertor = {
                 +data.data.mtWmPoiId+"\r\n";
             }
         }
-        console.log(menuCsv);
-        fs.appendFile(menuCsvFile,menuCsv,'UTF-8',(err)=>{
+        fs.appendFile(menuCsvFile,menuCsv,'utf8',(err)=>{
             if(err) throw err;
         }); 
     },

@@ -18,7 +18,7 @@ const convertor = {
             +(shop.extraService.indexOf(5)>=0)+","
             +shop.mtWmPoiId+"\r\n";
         }
-        fs.appendFile(shopCsvFile,shopCsv,(err)=>{
+        fs.appendFile(shopCsvFile,shopCsv,'UTF-8',(err)=>{
             if(err) throw err;
         });
     },

@@ -1,11 +1,14 @@
 const fs = require('fs');
-const dataFolder = 'data/shop/';
-const shopCsvFile = 'data/shopList.csv';
-const shopJsonFile = /^shopList\d*\.json$/;
+const dataFolder = 'data/shopBj/';
+const shopCsvFile = 'data/topshopList.csv';
+const shopJsonFile = /^shopListBj\d*\.json$/;
+let shopIds = [];
 const convertor = {
     appendToShopListCsv(data){
         let shopCsv = "";
         for(let shop of data){
+            if(shopIds.indexOf(shop.mtWmPoiId)>-1) continue;
+            shopIds.push(shop.mtWmPoiId);
             shopCsv+=shop.name+","
             +shop.sold+","
             +shop.star+","

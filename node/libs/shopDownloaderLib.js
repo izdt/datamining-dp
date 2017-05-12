@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 
 const baseUrl = "https://takeaway.dianping.com/waimai/ajax/newm/newIndex";
-const jsonFile = "data/shop/shopList";
+const jsonFile = "data/shop/shopListBj";
 const offset = 20;
 
 const shopDownloaderLib = {
@@ -33,7 +33,8 @@ const shopDownloaderLib = {
     },
     download(startIndex,channel,lat,lng,sortId){
         startIndex = startIndex*25;
-        let fromUrl = baseUrl+"?startIndex="+startIndex+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&initialLat="+lat+"&initialLng="+lng+"&sortId="+sortId;
+        let fromUrl = baseUrl+"?sortId="+sortId+"&startIndex="+startIndex+"&initialLat="+lat+"&initialLng="+lng;
+        //let fromUrl = baseUrl+"?startIndex="+startIndex+"&channel="+channel+"&lat="+lat+"&lng="+lng+"&initialLat="+lat+"&initialLng="+lng+"&sortId="+sortId;
         console.log(fromUrl);
         https.get(fromUrl,(res)=>{
             let dpData = '';

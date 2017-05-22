@@ -13,6 +13,7 @@ range(table$sold)
 range(table$star)
 length(table$sold)
 sort(table$sold, decreasing=T)
+table[sort(table$sold, decreasing=T),]
 numCut <- cut(table$sold, c(-Inf, 0, 1000,3000,6000,9000,12000, Inf))
 tapply(table$sold, table$star, sum)  #caclute sold sum of diffrent star
 tapply(table$sold, table$brand, sum)

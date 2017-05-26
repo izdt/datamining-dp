@@ -1,9 +1,9 @@
 const lib = require('./libs/shopDownloaderLib');
-// for(let i=0;i<500;i++){
-//     setTimeout(()=>{
-//         lib.download(i,"6","39.99281","116.31088","0");
-//     },500*i);
-// }
+for(let i=0;i<500;i++){
+    setTimeout(()=>{
+        lib.download(i,"6","39.99281","116.31088","0");
+    },500*i);
+}
 
 /*
 //Get top 25 shop for 600 dot at Beijing

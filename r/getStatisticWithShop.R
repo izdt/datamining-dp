@@ -55,11 +55,15 @@ jpeg(file="r/images/top200Brand.jpeg", width = 900, height = 600)
 isBrand<-tapply(top200Shop$name,top200Shop$brand,length)
 pie(isBrand,col=rainbow(7),labels=c("False","True"),main="Top 200 shop brand analyse")
 dev.off()
+table(top200Shop$brand)
 
 jpeg(file="r/images/top200MtService.jpeg", width = 900, height = 600)
 isMtService<-tapply(top200Shop$name,top200Shop$extraService,length)
 pie(isMtService,col=rainbow(2),labels=c("False","True"),main="Top 200 shop Meituan Service analyse")
 dev.off()
+table(top200Shop$extraService)
+table(top200Shop$extraService,top200Shop$brand)
+table(topShopWithLL$extraService,topShopWithLL$brand)
 
 #split(top200Shop,top200Shop$brand)
 
